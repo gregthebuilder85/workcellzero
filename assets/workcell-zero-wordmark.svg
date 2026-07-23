@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 150" role="img" aria-labelledby="title">
+  <title id="title">Workcell Zero wordmark</title>
+  <rect width="720" height="150" fill="#050708"/>
+  <g transform="translate(18,18)">
+    <rect width="112" height="112" rx="3" fill="#090D0E" stroke="#4B2B1C" stroke-width="3"/>
+    <defs><clipPath id="c"><path d="M15 15H97V68L68 97H15Z"/></clipPath></defs>
+    <g clip-path="url(#c)" fill="#FF6500">
+      <rect x="-13" y="27" width="84" height="16" transform="rotate(-45 29 35)"/>
+      <rect x="17" y="27" width="84" height="16" transform="rotate(-45 59 35)"/>
+      <rect x="47" y="27" width="84" height="16" transform="rotate(-45 89 35)"/>
+    </g>
+    <text x="99" y="104" text-anchor="end" font-family="IBM Plex Mono, DejaVu Sans Mono, monospace" font-size="9" font-weight="700" fill="#FFAD5C">W0</text>
+  </g>
+  <text x="154" y="81" font-family="Barlow Condensed, Liberation Sans Narrow, Arial Narrow, sans-serif" font-size="64" font-weight="700" letter-spacing="4" fill="#F0EEE8">WORKCELL</text>
+  <text x="479" y="81" font-family="Barlow Condensed, Liberation Sans Narrow, Arial Narrow, sans-serif" font-size="64" font-weight="700" letter-spacing="4" fill="#FF6500">ZERO</text>
+  <text x="157" y="112" font-family="IBM Plex Mono, DejaVu Sans Mono, monospace" font-size="12" letter-spacing="4" fill="#849196">AUTOMATED VENTURE WORKBENCH // SYSTEM 01</text>
+</svg>

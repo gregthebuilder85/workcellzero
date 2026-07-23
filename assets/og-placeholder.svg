@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="ogt">
+  <title id="ogt">WORKCELL ZERO social preview placeholder</title>
+  <rect width="1200" height="630" fill="#050708"/>
+  <g stroke="#141c1e" stroke-width="1">
+    <path d="M0 60H1200M0 120H1200M0 180H1200M0 240H1200M0 300H1200M0 360H1200M0 420H1200M0 480H1200M0 540H1200"/>
+    <path d="M60 0V630M120 0V630M180 0V630M1020 0V630M1080 0V630M1140 0V630"/>
+  </g>
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#273236" stroke-width="2"/>
+  <!-- mark -->
+  <g transform="translate(80,70)">
+    <rect width="96" height="96" rx="3" fill="#090D0E" stroke="#4B2B1C" stroke-width="3"/>
+    <defs><clipPath id="c"><path d="M13 13H83V58L58 83H13Z"/></clipPath></defs>
+    <g clip-path="url(#c)" fill="#FF6500">
+      <rect x="-11" y="23" width="72" height="14" transform="rotate(-45 25 30)"/>
+      <rect x="15" y="23" width="72" height="14" transform="rotate(-45 51 30)"/>
+      <rect x="41" y="23" width="72" height="14" transform="rotate(-45 77 30)"/>
+    </g>
+  </g>
+  <text x="200" y="120" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-size="52" font-weight="700" letter-spacing="6" fill="#F0EEE8">WORKCELL <tspan fill="#FF6500">ZERO</tspan></text>
+  <text x="200" y="150" font-family="'IBM Plex Mono',monospace" font-size="17" letter-spacing="6" fill="#829095">AUTOMATED VENTURE WORKBENCH // SYSTEM 01</text>
+  <text x="80" y="330" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-size="86" font-weight="700" fill="#F0EEE8">Turn an idea into a</text>
+  <text x="80" y="410" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-size="86" font-weight="700" fill="#F0EEE8">working product and a</text>
+  <text x="80" y="490" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-size="86" font-weight="700" fill="#FF6500">real market test.</text>
+  <text x="80" y="565" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="3" fill="#66F28B">RUNS INSIDE CHATGPT OR CLAUDE // NO PROMPTS TO WRITE // CAN SAY STOP</text>
+  <text x="1120" y="590" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="13" letter-spacing="3" fill="#5c676a">SOCIAL PREVIEW PLACEHOLDER</text>
+</svg>

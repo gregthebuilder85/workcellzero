@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Workcell Zero mark</title>
+  <desc id="desc">Three forward-slanting orange signal bars inside a dark industrial cell.</desc>
+  <rect width="128" height="128" rx="4" fill="#090D0E"/>
+  <rect x="2" y="2" width="124" height="124" rx="3" fill="none" stroke="#4B2B1C" stroke-width="4"/>
+  <defs><clipPath id="c"><path d="M18 18H110V78L78 110H18Z"/></clipPath></defs>
+  <g clip-path="url(#c)" fill="#FF6500">
+    <rect x="-16" y="30" width="92" height="18" transform="rotate(-45 30 39)"/>
+    <rect x="18" y="30" width="92" height="18" transform="rotate(-45 64 39)"/>
+    <rect x="52" y="30" width="92" height="18" transform="rotate(-45 98 39)"/>
+  </g>
+  <text x="112" y="117" text-anchor="end" font-family="IBM Plex Mono, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#FFAD5C">W0</text>
+</svg>
