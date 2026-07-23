@@ -13,8 +13,8 @@
   var forms = Array.prototype.slice.call(document.querySelectorAll("[data-founding-list]"));
   if (!forms.length) return;
 
-  var ready = CFG.foundingListEnabled && CFG.supabaseUrl && CFG.supabaseAnonKey;
-  var ENDPOINT = ready ? CFG.supabaseUrl.replace(/\/+$/, "") + "/rest/v1/" + (CFG.foundingListTable || "founding_list") : "";
+  var ready = CFG.foundingListEnabled !== false;
+  var ENDPOINT = CFG.foundingListEndpoint || "/api/subscribe";
   var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
   function setStatus(el, msg, kind) {
@@ -57,26 +57,25 @@
 
       fetch(ENDPOINT, {
         method: "POST",
-        headers: {
-          "apikey": CFG.supabaseAnonKey,
-          "Authorization": "Bearer " + CFG.supabaseAnonKey,
-          "Content-Type": "application/json",
-          "Prefer": "return=minimal"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email,
-          source: (location.pathname.replace(/^\//, "") || "index.html") + (form.dataset.source ? " // " + form.dataset.source : ""),
-          user_agent: navigator.userAgent.slice(0, 300)
+          company: honeypot ? honeypot.value : "",
+          source: (location.pathname.replace(/^\//, "") || "index.html") + (form.dataset.source ? " // " + form.dataset.source : "")
         })
       }).then(function (res) {
-        if (res.status === 201 || res.status === 204) {
-          setStatus(status, "You are on the founding list. Watch your inbox at launch.", "ok");
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { status: res.status, data: data };
+        });
+      }).then(function (r) {
+        if (r.status === 200 && r.data && r.data.ok) {
+          if (r.data.status === "already") {
+            setStatus(status, "You are already on the founding list.", "ok");
+          } else {
+            setStatus(status, "You are on the founding list. Check your inbox for a confirmation.", "ok");
+          }
           form.reset();
-        } else if (res.status === 409) {
-          // duplicate email: already registered, treat as success
-          setStatus(status, "You are already on the founding list.", "ok");
-          form.reset();
-        } else if (res.status === 400 || res.status === 422) {
+        } else if (r.status === 400) {
           setStatus(status, "That email did not look valid. Please check it.", "err");
           if (button) button.disabled = false;
         } else {
