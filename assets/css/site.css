@@ -372,6 +372,28 @@ details.item[open]>summary::after{content:"x"}
 /* Sticky mobile CTA (system-01 only) */
 .sticky-cta{display:none}
 
+/* ---- Conversion helpers (kit positioning + coming soon) --------------- */
+.badge-soon{display:inline-flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber2);border:1px solid var(--edge);padding:7px 11px}
+.badge-soon::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block}
+.whatis{font-family:'Newsreader',Georgia,serif;font-size:clamp(16px,1.7vw,19px);line-height:1.5;color:var(--ink);margin:16px 0 0;max-width:600px}
+.whatis b{color:var(--amber2);font-weight:600}
+.guar-micro{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.guar-micro b{color:var(--green)}
+/* Big value stack (what you leave with / what's inside) */
+.stack{list-style:none;padding:0;margin:0}
+.stack li{position:relative;padding:15px 0 15px 34px;border-top:1px solid var(--line2);font-family:'Newsreader',Georgia,serif;font-size:17px;line-height:1.45;color:var(--paper)}
+.stack li:first-child{border-top:0}
+.stack li::before{content:"";position:absolute;left:0;top:17px;width:16px;height:16px;border:1px solid var(--green);color:var(--green)}
+.stack li::after{content:"L";position:absolute;left:4px;top:12px;color:var(--green);font-size:10px;transform:scaleX(-1) rotate(-8deg)}
+.stack li b{color:var(--ink);font-weight:600}
+/* Kit contents grid, benefit led */
+.kit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kit-cell{border:1px solid var(--line);background:var(--panel2);padding:22px}
+.kit-cell .kc{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.kit-cell h4{font:700 20px/1 'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase;margin:10px 0 8px}
+.kit-cell p{font-family:'Newsreader',Georgia,serif;font-size:14px;line-height:1.45;color:var(--muted);margin:0}
+@media(max-width:940px){.kit-grid{grid-template-columns:1fr}}
+
 /* ---- Legal / prose pages --------------------------------------------- */
 .legal{width:min(760px,calc(100% - var(--gut)));margin-inline:auto;padding:56px 0 90px}
 .legal a.back{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
