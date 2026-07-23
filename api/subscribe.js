@@ -21,6 +21,12 @@ function readRaw(req) {
   });
 }
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
 async function sendConfirmation(email) {
   var from = process.env.RESEND_FROM;
   var url = "https://workcellzero.com/system-01.html";
@@ -102,12 +108,49 @@ async function sendNotification(email, source) {
   var to = process.env.NOTIFY_TO;
   if (!to) return; // notifications optional
   var from = process.env.RESEND_FROM;
-  var text = "New founding-list signup.\n\nEmail: " + email + "\nSource: " + (source || "unknown") + "\n\nReply to this message to reach them directly.";
-  var html = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">' +
-    '<p style="color:#ff6500;letter-spacing:2px;font-size:11px;text-transform:uppercase;margin:0 0 8px">WORKCELL ZERO // Founding list</p>' +
-    '<p><strong>New signup:</strong> ' + email + '</p>' +
-    '<p style="color:#555">Source: ' + (source || "unknown") + '</p>' +
-    '<p style="color:#555;font-size:13px">Reply to this message to reach them directly.</p></div>';
+  var src = source || "unknown";
+  var when = new Date().toISOString().replace("T", " ").slice(0, 19) + " UTC";
+  var text = [
+    "WORKCELL ZERO // SYSTEM 01",
+    "",
+    "INTAKE // NEW SIGNUP",
+    "",
+    "Email:  " + email,
+    "Source: " + src,
+    "Logged: " + when,
+    "",
+    "Reply to this email to reach them directly.",
+    "",
+    "Sent by the workcellzero.com founding-list capture."
+  ].join("\n");
+  var html = [
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width,initial-scale=1">',
+    '<meta name="color-scheme" content="dark light"><meta name="supported-color-schemes" content="dark light">',
+    '<title>WORKCELL ZERO</title></head>',
+    '<body style="margin:0;padding:0;background:#050708;">',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#050708" style="background:#050708;"><tr><td align="center" style="padding:28px 16px;">',
+    '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;">',
+    '<tr><td style="padding:0 2px 16px 2px;">',
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:22px;letter-spacing:3px;color:#f0eee8;">WORKCELL <span style="color:#ff6500;">ZERO</span></div>',
+    '<div style="font-family:Courier New,monospace;font-size:10px;letter-spacing:3px;color:#829095;padding-top:6px;">SYSTEM 01 // FOUNDING LIST</div>',
+    '</td></tr>',
+    '<tr><td bgcolor="#0b1011" style="background:#0b1011;border:1px solid #273236;padding:30px 30px;">',
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="border:1px solid #4b2b1c;color:#ffad5c;font-family:Courier New,monospace;font-size:11px;letter-spacing:2px;padding:7px 11px;">INTAKE // NEW SIGNUP</td></tr></table>',
+    '<h1 style="font-family:Arial Narrow,Arial,sans-serif;font-weight:bold;text-transform:uppercase;letter-spacing:1px;color:#f0eee8;font-size:28px;line-height:1.05;margin:18px 0 18px 0;">New founding-list signup.</h1>',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#080b0a" style="background:#080b0a;border:1px solid #273236;"><tr><td style="padding:16px 18px;">',
+    '<div style="font-family:Courier New,monospace;font-size:9px;letter-spacing:2px;color:#ff6500;text-transform:uppercase;">Email</div>',
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-size:19px;color:#f0eee8;padding-top:5px;word-break:break-all;">' + escapeHtml(email) + '</div>',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #1a2225;margin-top:14px;">',
+    '<tr><td width="90" valign="top" style="padding:10px 0 2px 0;font-family:Courier New,monospace;font-size:9px;letter-spacing:2px;color:#829095;text-transform:uppercase;">Source</td><td style="padding:10px 0 2px 0;font-family:Courier New,monospace;font-size:11px;color:#cfd3cf;word-break:break-all;">' + escapeHtml(src) + '</td></tr>',
+    '<tr><td valign="top" style="padding:2px 0 0 0;font-family:Courier New,monospace;font-size:9px;letter-spacing:2px;color:#829095;text-transform:uppercase;">Logged</td><td style="padding:2px 0 0 0;font-family:Courier New,monospace;font-size:11px;color:#cfd3cf;">' + when + '</td></tr>',
+    '</table>',
+    '</td></tr></table>',
+    '<p style="font-family:Georgia,serif;font-size:15px;line-height:1.5;color:#cfd3cf;margin:20px 0 0 0;">Reply to this email to reach them directly.</p>',
+    '</td></tr>',
+    '<tr><td style="padding:18px 4px 0 4px;font-family:Courier New,monospace;font-size:10px;line-height:1.8;color:#5c676a;">Sent by the workcellzero.com founding-list capture.<br><span style="color:#829095;">WORKCELL ZERO // SYSTEM 01</span></td></tr>',
+    '</table></td></tr></table></body></html>'
+  ].join("");
 
   var payload = { from: from, to: [to], subject: "New founding-list signup: " + email, html: html, text: text, reply_to: email };
   var r = await fetch("https://api.resend.com/emails", {
