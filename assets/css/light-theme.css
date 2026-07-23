@@ -1,0 +1,98 @@
+/* ============================================================================
+   WORKCELL ZERO // LIGHT THEME
+   Applies only when <html data-theme="light">. Loaded on every page; inert in
+   dark mode. The theme is resolved before paint by an inline script in <head>
+   (localStorage override, else prefers-color-scheme) and flipped by the nav
+   toggle. Keeps the industrial identity on a warm paper background: white cards,
+   deepened green/red/blue for contrast, soft depth instead of hard offsets.
+   ============================================================================ */
+
+:root[data-theme="light"]{
+  --void:#f3efe3;   /* page: warm paper */
+  --coal:#ffffff;   /* cards: clean white */
+  --panel:#ece6d8;  /* bands */
+  --panel2:#ffffff; /* cards alt */
+  --line:#e4decb;   /* borders */
+  --line2:#ebe5d7;  /* faint borders */
+  --ink:#2b2620;    /* headlines + body: warm charcoal */
+  --paper:#4a443c;  /* secondary text */
+  --muted:#6b6459;  /* labels / sublines */
+  --faint:#9a9486;  /* faint */
+  --amber:#db5600;  /* signal orange (deepened for light) */
+  --amber2:#a8460c; /* hot orange -> deeper for text */
+  --green:#1f8a4f;  /* phosphor green -> deep green */
+  --red:#cf3c2c;    /* stop red */
+  --blue:#2f7d94;   /* utility blue */
+  --edge:#e8bf99;   /* warm edge */
+}
+
+[data-theme="light"] body{
+  background-image:
+    linear-gradient(rgba(43,38,30,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(43,38,30,.03) 1px,transparent 1px);
+  background-size:34px 34px,34px 34px;
+}
+[data-theme="light"] body::before{display:none!important;} /* drop CRT scanline */
+
+/* Nav / rails */
+[data-theme="light"] .top{background:rgba(247,244,236,.9);border-bottom-color:var(--line);}
+[data-theme="light"] .rail{background:var(--panel);}
+
+/* Buttons */
+[data-theme="light"] .btn.hot{color:#fff;background:var(--amber);border-color:var(--amber);}
+[data-theme="light"] .btn.hot:hover{color:#fff;background:var(--amber2);border-color:var(--amber2);}
+[data-theme="light"] .btn:not(.hot):not(.is-disabled){background:var(--coal);border:1.5px solid #35302a;color:var(--ink);}
+[data-theme="light"] .btn:not(.hot):not(.is-disabled):hover{border-color:var(--amber);color:var(--amber);}
+[data-theme="light"] .btn.is-disabled{background:#efece2;border-color:var(--faint);color:var(--muted);}
+[data-theme="light"] .sticky-cta{color:#fff;}
+
+/* Depth: soft shadows in place of hard offset */
+[data-theme="light"] .readout{box-shadow:0 18px 44px rgba(38,26,12,.17),0 4px 12px rgba(38,26,12,.09);}
+[data-theme="light"] .price-card,
+[data-theme="light"] .plate.active,
+[data-theme="light"] .joinband{box-shadow:0 16px 38px rgba(38,26,12,.13);}
+
+/* Diagnostic console */
+[data-theme="light"] .screen{background:var(--panel2);border-color:var(--line);}
+[data-theme="light"] .screen-card{background:var(--coal);}
+[data-theme="light"] .screen-main p{color:var(--paper);}
+[data-theme="light"] .screen-foot,
+[data-theme="light"] .mini-step{color:var(--muted);}
+
+/* Hero chips as defined tags */
+[data-theme="light"] .chips span{border:1px solid #cbc4b2;color:#4a443c;background:var(--coal);}
+[data-theme="light"] .chips span.ok{border-color:#bcdcc6;color:var(--green);}
+
+/* Code / receipt / input surfaces */
+[data-theme="light"] .receipt,
+[data-theme="light"] .br-card{background:#f4f1e8;border-color:var(--line);color:var(--green);}
+[data-theme="light"] .sample-in textarea,
+[data-theme="light"] .flist input[type="email"]{background:var(--coal);color:var(--ink);border-color:var(--line);}
+[data-theme="light"] .stage-tabs button{background:var(--coal);}
+[data-theme="light"] .stage-tabs button.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+[data-theme="light"] .demo-note,
+[data-theme="light"] .sample-note,
+[data-theme="light"] .illus{color:var(--muted);}
+[data-theme="light"] .br-index button.active{background:rgba(219,86,0,.08);color:var(--ink);}
+
+/* Colored panel borders (were dark hexes) */
+[data-theme="light"] .trust-panel.red{border-color:#e7bdb5;}
+[data-theme="light"] .buildcol.no{border-color:#eccbb0;}
+[data-theme="light"] .buildcol.yes{border-color:#c6e2ce;}
+[data-theme="light"] .gate-cell.build{border-color:#c6e2ce;}
+[data-theme="light"] .gate-cell.stop{border-color:#efc9c2;}
+
+/* Blueprint plate reads naturally on white */
+[data-theme="light"] .plate.blueprint{background:var(--panel2);}
+[data-theme="light"] .blueprint-frame{border-color:#c9c2b2;}
+
+/* Bands / modal / dividers */
+[data-theme="light"] .final{background:var(--panel);}
+[data-theme="light"] .modal-box{background:var(--coal);}
+[data-theme="light"] .modal{background:rgba(30,24,14,.55);}
+[data-theme="light"] .divline{background:var(--line);}
+[data-theme="light"] .continuity{background:var(--panel2);}
+
+/* Theme toggle button in light mode */
+[data-theme="light"] .themetoggle{background:var(--coal);border-color:var(--line);color:var(--muted);}
+[data-theme="light"] .themetoggle:hover{border-color:var(--amber);color:var(--amber);}

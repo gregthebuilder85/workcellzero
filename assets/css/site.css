@@ -98,6 +98,15 @@ ul{margin:0}
 .nav a.link:hover,.nav a.link[aria-current="page"]{color:var(--amber2)}
 .nav a.link[aria-current="page"]{color:var(--ink)}
 .navtoggle{display:none;border:1px solid var(--line);background:var(--panel);padding:9px 11px;font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.top-right{display:flex;align-items:center;gap:16px}
+.themetoggle{display:inline-grid;place-items:center;width:38px;height:38px;flex:0 0 38px;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:0}
+.themetoggle:hover{border-color:var(--amber);color:var(--amber2)}
+.themetoggle svg{width:16px;height:16px;display:block}
+.themetoggle .i-moon{display:none}
+:root[data-theme="light"] .themetoggle .i-sun{display:none}
+:root[data-theme="light"] .themetoggle .i-moon{display:block}
+/* Section 01 hero: input to output arrow */
+.hero h1 .io-arrow{color:var(--amber);font-weight:700;display:inline-block;position:relative;top:-.06em;margin:0 .05em 0 .08em}
 
 /* ---- Production rail ticker ------------------------------------------- */
 .rail{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--coal);overflow:hidden}
@@ -457,6 +466,9 @@ details.item[open]>summary::after{content:"x"}
   :root{--gut:24px}
   .nav .link{display:none}
   .navtoggle{display:inline-block}
+  .top-right{gap:10px}
+  .brand .b2{display:none}
+  .themetoggle{width:34px;height:34px;flex-basis:34px}
   .nav.open{position:absolute;top:70px;left:0;right:0;background:var(--coal);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:6px 0}
   .nav.open .link{display:block;padding:14px 24px;border-top:1px solid var(--line2)}
   .nav.open .btn{margin:10px 24px}

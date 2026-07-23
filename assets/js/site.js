@@ -41,6 +41,18 @@
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
 
+  /* ---- Light / dark theme toggle ------------------------------------- */
+  // The initial theme is resolved before paint by an inline <head> script
+  // (localStorage override, else prefers-color-scheme). This just flips and
+  // persists the choice.
+  var themeBtn = document.querySelector(".themetoggle");
+  on(themeBtn, "click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("wz-theme", next); } catch (e) {}
+    themeBtn.setAttribute("aria-pressed", next === "light" ? "true" : "false");
+  });
+
   /* ---- Preview-only checkout guard ------------------------------------ */
   var modal = document.querySelector("#previewModal");
   function openModal() {
