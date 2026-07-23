@@ -393,6 +393,28 @@ details.item[open]>summary::after{content:"x"}
 .kit-cell h4{font:700 20px/1 'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase;margin:10px 0 8px}
 .kit-cell p{font-family:'Newsreader',Georgia,serif;font-size:14px;line-height:1.45;color:var(--muted);margin:0}
 @media(max-width:940px){.kit-grid{grid-template-columns:1fr}}
+/* Founding-list capture */
+.joinband{border:1px solid var(--amber);background:var(--coal);padding:34px 30px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;box-shadow:14px 14px 0 rgba(255,101,0,.06)}
+.joinband .jl h2{font:700 clamp(34px,4.4vw,52px)/.92 'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase;margin:8px 0 12px}
+.joinband .jl p{font-family:'Newsreader',Georgia,serif;font-size:16px;line-height:1.5;color:var(--paper);margin:0}
+.flist{display:flex;gap:8px;flex-wrap:wrap}
+.flist .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.flist input[type="email"]{flex:1 1 220px;min-width:0;background:#080b0a;border:1px solid var(--line);color:var(--ink);padding:14px 13px;font-family:'IBM Plex Mono',monospace;font-size:13px}
+.flist input[type="email"]::placeholder{color:var(--faint)}
+.flist input[type="email"]:focus{outline:2px solid var(--amber);outline-offset:1px;border-color:var(--amber)}
+.flist button{flex:0 0 auto;border:1px solid var(--amber);background:var(--amber);color:#1b1207;padding:14px 20px;text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:700}
+.flist button:hover{background:var(--amber2);border-color:var(--amber2)}
+.flist button:disabled{opacity:.6;cursor:default}
+.flist-wrap{display:flex;flex-direction:column;gap:9px}
+.flist-status{min-height:1em;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--muted);margin:0}
+.flist-status.is-ok{color:var(--green)}
+.flist-status.is-err{color:var(--red)}
+.flist-status.is-muted{color:var(--muted)}
+.flist-fine{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0}
+@media(max-width:940px){.joinband{grid-template-columns:1fr;gap:20px;padding:26px 22px}}
+/* founding-list form inside the modal */
+.modal-box .flist{margin-top:14px}
+.modal-box .flist-wrap{margin-top:4px}
 
 /* ---- Legal / prose pages --------------------------------------------- */
 .legal{width:min(760px,calc(100% - var(--gut)));margin-inline:auto;padding:56px 0 90px}

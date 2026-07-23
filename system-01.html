@@ -363,6 +363,27 @@
     </div>
   </section>
 
+  <!-- FOUNDING LIST CAPTURE -->
+  <section class="wrap section" id="join">
+    <div class="joinband">
+      <div class="jl">
+        <div class="eyebrow">Founding release // coming soon</div>
+        <h2>Be first through the door.</h2>
+        <p>Join the founding list and get one email the moment SYSTEM 01 opens, at the founding price for early buyers.</p>
+      </div>
+      <form class="flist-wrap" data-founding-list data-source="join-band" novalidate>
+        <div class="flist">
+          <label class="sr-only" for="fl-email-band">Email address</label>
+          <input id="fl-email-band" type="email" name="email" placeholder="Your email address" autocomplete="email" required>
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Join the founding list</button>
+        </div>
+        <p class="flist-status" data-flist-status role="status" aria-live="polite"></p>
+        <p class="flist-fine">One email when it opens. No spam.</p>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <!-- 11. FINAL CTA -->
@@ -395,10 +416,19 @@
 <div class="modal" id="previewModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
   <div class="modal-box">
     <h3 id="pmTitle">Coming soon</h3>
-    <p>WORKCELL ZERO // SYSTEM 01 is launching soon. Checkout is not open yet, so nothing can be purchased from this page right now.</p>
-    <p>The founding release opens a real, secure checkout with instant delivery and the 30-day guarantee.</p>
+    <p>WORKCELL ZERO // SYSTEM 01 is launching soon. Checkout is not open yet, so nothing can be purchased right now.</p>
+    <p>Join the founding list and get one email the moment it opens, at the founding price for early buyers.</p>
+    <form class="flist-wrap" data-founding-list data-source="coming-soon-modal" novalidate>
+      <div class="flist">
+        <label class="sr-only" for="fl-email-modal">Email address</label>
+        <input id="fl-email-modal" type="email" name="email" placeholder="Your email address" autocomplete="email" required>
+        <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit">Join the founding list</button>
+      </div>
+      <p class="flist-status" data-flist-status role="status" aria-live="polite"></p>
+    </form>
     <div class="modal-actions">
-      <button class="btn hot" id="closeModal" type="button">Got it</button>
+      <button class="btn" id="closeModal" type="button">Close</button>
       <a class="btn" href="build-records.html">View a complete Build Record</a>
     </div>
   </div>
@@ -406,5 +436,6 @@
 
 <script src="assets/js/sample-data.js"></script>
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/founding-list.js" defer></script>
 </body>
 </html>

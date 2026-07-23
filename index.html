@@ -240,6 +240,27 @@
     </a>
   </section>
 
+  <!-- FOUNDING LIST CAPTURE -->
+  <section class="wrap section" id="join">
+    <div class="joinband">
+      <div class="jl">
+        <div class="eyebrow">Founding release // coming soon</div>
+        <h2>Be first through the door.</h2>
+        <p>Join the founding list and get one email the moment WORKCELL ZERO opens, at the founding price for early buyers.</p>
+      </div>
+      <form class="flist-wrap" data-founding-list data-source="home-band" novalidate>
+        <div class="flist">
+          <label class="sr-only" for="fl-email-home">Email address</label>
+          <input id="fl-email-home" type="email" name="email" placeholder="Your email address" autocomplete="email" required>
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Join the founding list</button>
+        </div>
+        <p class="flist-status" data-flist-status role="status" aria-live="polite"></p>
+        <p class="flist-fine">One email when it opens. No spam.</p>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <!-- FINAL CTA -->
@@ -268,5 +289,6 @@
 </footer>
 
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/founding-list.js" defer></script>
 </body>
 </html>
