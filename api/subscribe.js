@@ -43,17 +43,44 @@ async function sendConfirmation(email) {
     "</div>"
   ].join("");
 
+  var payload = { from: from, to: [email], subject: subject, html: html, text: text };
+  if (process.env.RESEND_REPLY_TO) payload.reply_to = process.env.RESEND_REPLY_TO;
+
   var r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       "Authorization": "Bearer " + process.env.RESEND_API_KEY,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ from: from, to: [email], subject: subject, html: html, text: text })
+    body: JSON.stringify(payload)
   });
   if (!r.ok) {
     var t = await r.text();
     throw new Error("resend " + r.status + " " + t.slice(0, 300));
+  }
+}
+
+// Founder notification: one email to the owner for each new signup.
+async function sendNotification(email, source) {
+  var to = process.env.NOTIFY_TO;
+  if (!to) return; // notifications optional
+  var from = process.env.RESEND_FROM;
+  var text = "New founding-list signup.\n\nEmail: " + email + "\nSource: " + (source || "unknown") + "\n\nReply to this message to reach them directly.";
+  var html = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">' +
+    '<p style="color:#ff6500;letter-spacing:2px;font-size:11px;text-transform:uppercase;margin:0 0 8px">WORKCELL ZERO // Founding list</p>' +
+    '<p><strong>New signup:</strong> ' + email + '</p>' +
+    '<p style="color:#555">Source: ' + (source || "unknown") + '</p>' +
+    '<p style="color:#555;font-size:13px">Reply to this message to reach them directly.</p></div>';
+
+  var payload = { from: from, to: [to], subject: "New founding-list signup: " + email, html: html, text: text, reply_to: email };
+  var r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + process.env.RESEND_API_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+  if (!r.ok) {
+    var t = await r.text();
+    throw new Error("resend notify " + r.status + " " + t.slice(0, 300));
   }
 }
 
@@ -115,12 +142,15 @@ module.exports = async function handler(req, res) {
     return res.status(502).json({ error: "store_failed" });
   }
 
-  // Confirmation email: only for new signups, only when Resend is configured.
-  // Never let an email failure fail the signup.
+  // Emails: only for new signups, only when Resend is configured. Confirmation
+  // to the subscriber and a notification to the owner are independent, and
+  // neither failure is allowed to fail the signup.
   var emailed = false;
   if (isNew && process.env.RESEND_API_KEY && process.env.RESEND_FROM) {
     try { await sendConfirmation(email); emailed = true; }
-    catch (e) { console.error("subscribe: resend", e && e.message ? e.message : e); }
+    catch (e) { console.error("subscribe: resend confirm", e && e.message ? e.message : e); }
+    try { await sendNotification(email, source); }
+    catch (e) { console.error("subscribe: resend notify", e && e.message ? e.message : e); }
   }
 
   return res.status(200).json({ ok: true, status: isNew ? "subscribed" : "already", emailed: emailed });
