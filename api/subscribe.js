@@ -23,24 +23,61 @@ function readRaw(req) {
 
 async function sendConfirmation(email) {
   var from = process.env.RESEND_FROM;
-  var subject = "You are on the WORKCELL ZERO founding list";
+  var url = "https://workcellzero.com/system-01.html";
+  var subject = "Confirmed: you are on the WORKCELL ZERO founding list";
+  var preheader = "You are on the founding list for WORKCELL ZERO // SYSTEM 01. One email when it opens, at the founding price for early buyers.";
   var text = [
-    "You are on the founding list for WORKCELL ZERO // SYSTEM 01, the AI business-building kit.",
+    "WORKCELL ZERO // SYSTEM 01",
     "",
-    "You will get one email the moment it opens, at the founding price for early buyers. No spam.",
+    "FOUNDING LIST // CONFIRMED",
     "",
-    "If this was not you, you can ignore this message.",
+    "You are on the founding list.",
     "",
-    "WORKCELL ZERO"
+    "WORKCELL ZERO // SYSTEM 01 is the complete AI business-building kit. You install it in ChatGPT or Claude, and it turns an idea into a working product and a real market test. If the idea is weak, it tells you to stop.",
+    "",
+    "What happens next: we will send you one email the moment SYSTEM 01 opens, at the founding price for early buyers. No spam, and you can reply to this message any time.",
+    "",
+    "One pass through the line produces:",
+    "  + A decision you can defend, with the evidence that made it",
+    "  + A working first version you can put in front of a real customer",
+    "  + One real market test, aimed at your riskiest assumption",
+    "",
+    "See how it works: " + url,
+    "",
+    "You are receiving this because you joined the founding list at workcellzero.com. If this was not you, you can ignore this email.",
+    "WORKCELL ZERO // Built to challenge, not flatter."
   ].join("\n");
   var html = [
-    '<div style="background:#050708;color:#f0eee8;font-family:Georgia,serif;padding:32px;max-width:560px;margin:auto">',
-    '<div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;color:#ff6500;text-transform:uppercase">WORKCELL ZERO // System 01</div>',
-    '<h1 style="font-family:Arial,sans-serif;text-transform:uppercase;font-size:26px;margin:14px 0 16px;color:#f0eee8">You are on the founding list.</h1>',
-    '<p style="font-size:16px;line-height:1.55;color:#cfd3cf">WORKCELL ZERO // SYSTEM 01 is the AI business-building kit: it turns an idea into a working product and a real market test, or tells you to stop.</p>',
-    '<p style="font-size:16px;line-height:1.55;color:#cfd3cf">You will get one email the moment it opens, at the founding price for early buyers. No spam.</p>',
-    '<p style="font-size:13px;line-height:1.5;color:#829095;border-top:1px solid #273236;padding-top:16px;margin-top:20px">If this was not you, you can ignore this message.</p>',
-    "</div>"
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width,initial-scale=1">',
+    '<meta name="color-scheme" content="dark light"><meta name="supported-color-schemes" content="dark light">',
+    '<title>WORKCELL ZERO</title></head>',
+    '<body style="margin:0;padding:0;background:#050708;">',
+    '<span style="display:none!important;max-height:0;overflow:hidden;opacity:0;color:#050708;font-size:1px;line-height:1px;">' + preheader + '</span>',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#050708" style="background:#050708;"><tr><td align="center" style="padding:28px 16px;">',
+    '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;">',
+    '<tr><td style="padding:0 2px 16px 2px;">',
+    '<div style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:22px;letter-spacing:3px;color:#f0eee8;">WORKCELL <span style="color:#ff6500;">ZERO</span></div>',
+    '<div style="font-family:Courier New,monospace;font-size:10px;letter-spacing:3px;color:#829095;padding-top:6px;">SYSTEM 01 // AUTOMATED VENTURE WORKBENCH</div>',
+    '</td></tr>',
+    '<tr><td bgcolor="#0b1011" style="background:#0b1011;border:1px solid #273236;padding:34px 30px;">',
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="border:1px solid #3c5b45;color:#66f28b;font-family:Courier New,monospace;font-size:11px;letter-spacing:2px;padding:7px 11px;">FOUNDING LIST // CONFIRMED</td></tr></table>',
+    '<h1 style="font-family:Arial Narrow,Arial,sans-serif;font-weight:bold;text-transform:uppercase;letter-spacing:1px;color:#f0eee8;font-size:32px;line-height:1.05;margin:20px 0 14px 0;">You are on the founding list.</h1>',
+    '<p style="font-family:Georgia,serif;font-size:16px;line-height:1.55;color:#cfd3cf;margin:0 0 16px 0;">WORKCELL ZERO // SYSTEM 01 is the complete AI business-building kit. You install it in ChatGPT or Claude, and it turns an idea into a working product and a real market test. If the idea is weak, it tells you to <span style="color:#ff5f4f;">stop</span>.</p>',
+    '<p style="font-family:Georgia,serif;font-size:16px;line-height:1.55;color:#cfd3cf;margin:0 0 22px 0;">We will send you one email the moment it opens, at the founding price for early buyers. No spam, and you can reply to this message any time.</p>',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #273236;">',
+    '<tr><td style="padding:14px 0 6px 0;font-family:Courier New,monospace;font-size:9px;letter-spacing:2px;color:#ff6500;text-transform:uppercase;">One pass produces</td></tr>',
+    '<tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;line-height:1.4;color:#cfd3cf;"><span style="color:#66f28b;font-family:Courier New,monospace;">+</span>&nbsp;&nbsp;A decision you can defend, with the evidence that made it</td></tr>',
+    '<tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;line-height:1.4;color:#cfd3cf;"><span style="color:#66f28b;font-family:Courier New,monospace;">+</span>&nbsp;&nbsp;A working first version you can put in front of a real customer</td></tr>',
+    '<tr><td style="padding:6px 0 2px 0;font-family:Georgia,serif;font-size:14px;line-height:1.4;color:#cfd3cf;"><span style="color:#66f28b;font-family:Courier New,monospace;">+</span>&nbsp;&nbsp;One real market test, aimed at your riskiest assumption</td></tr>',
+    '</table>',
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:26px;"><tr><td bgcolor="#ff6500" style="background:#ff6500;"><a href="' + url + '" style="display:inline-block;padding:14px 24px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#1b1207;text-decoration:none;">See how it works</a></td></tr></table>',
+    '</td></tr>',
+    '<tr><td style="padding:20px 4px 0 4px;font-family:Courier New,monospace;font-size:10px;line-height:1.8;color:#5c676a;">',
+    'You are receiving this because you joined the founding list at workcellzero.com.<br>If this was not you, you can ignore this email.<br>',
+    '<span style="color:#829095;">WORKCELL ZERO // Built to challenge, not flatter.</span>',
+    '</td></tr>',
+    '</table></td></tr></table></body></html>'
   ].join("");
 
   var payload = { from: from, to: [email], subject: subject, html: html, text: text };
