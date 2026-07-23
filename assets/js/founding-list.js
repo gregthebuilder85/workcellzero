@@ -71,8 +71,10 @@
         if (r.status === 200 && r.data && r.data.ok) {
           if (r.data.status === "already") {
             setStatus(status, "You are already on the founding list.", "ok");
-          } else {
+          } else if (r.data.emailed) {
             setStatus(status, "You are on the founding list. Check your inbox for a confirmation.", "ok");
+          } else {
+            setStatus(status, "You are on the founding list. Watch for our launch email.", "ok");
           }
           form.reset();
         } else if (r.status === 400) {
